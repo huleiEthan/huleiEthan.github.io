@@ -315,7 +315,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/17/搭建samba文件共享服务/" class="post-title-link" itemprop="url">Untitled</a>
+                <a href="/2019/07/17/搭建samba文件共享服务/" class="post-title-link" itemprop="url">搭建samba文件共享服务</a>
               
             
           </h1>
@@ -340,9 +340,13 @@
                 
               
 
-              <time title="Created: 2019-07-17 11:58:45" itemprop="dateCreated datePublished" datetime="2019-07-17T11:58:45+08:00">2019-07-17</time>
+              <time title="Created: 2019-07-17 12:14:26 / Modified: 12:26:07" itemprop="dateCreated datePublished" datetime="2019-07-17T12:14:26+08:00">2019-07-17</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -390,27 +394,33 @@
       
         
           
-            <h3 id="安装samba"><a href="#安装samba" class="headerlink" title="安装samba"></a>安装samba</h3><p>我的远程Linux服务器用的是Ubutu系统，包管理器是apt，以此为例。</p>
+            <h3 id="安装-samba"><a href="#安装-samba" class="headerlink" title="安装 samba"></a>安装 samba</h3><p>我的远程 Linux 服务器用的是 Ubutu 系统，包管理器是 apt，以此为例。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install samba</span><br></pre></td></tr></table></figure>
-<h3 id="共享文件夹"><a href="#共享文件夹" class="headerlink" title="共享文件夹"></a>共享文件夹</h3><p>先创建一个需要共享的文件夹，这里用samba。如果已经有，直接执行chmod改变它的权限。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/samba</span><br><span class="line">sudo chmod 777 /home/samba</span><br></pre></td></tr></table></figure></p>
-<h3 id="配置samba-conf"><a href="#配置samba-conf" class="headerlink" title="配置samba.conf"></a>配置samba.conf</h3><p>可以直接修改/etc/samba/smb.conf，在文件末尾添加：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[share]</span><br><span class="line">      path = /home/USER_NAME/shared_directory</span><br><span class="line">      available = yes</span><br><span class="line">      browseable = yes</span><br><span class="line">      public = no</span><br><span class="line">      writable = yes</span><br></pre></td></tr></table></figure></p>
-<p>如设置多个共享目录则可以按以下格式设置<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[share1]</span><br><span class="line">    ....</span><br><span class="line">[share2]</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure></p>
+<h3 id="共享文件夹"><a href="#共享文件夹" class="headerlink" title="共享文件夹"></a>共享文件夹</h3><p>先创建一个需要共享的文件夹，这里用 samba。如果已经有，直接执行 chmod 改变它的权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/samba</span><br><span class="line">sudo chmod 777 /home/samba</span><br></pre></td></tr></table></figure>
+<h3 id="配置-samba-conf"><a href="#配置-samba-conf" class="headerlink" title="配置 samba.conf"></a>配置 samba.conf</h3><p>可以直接修改/etc/samba/smb.conf，在文件末尾添加：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[share]</span><br><span class="line">      path = /home/USER_NAME/shared_directory</span><br><span class="line">      available = yes</span><br><span class="line">      browseable = yes</span><br><span class="line">      public = no</span><br><span class="line">      writable = yes</span><br></pre></td></tr></table></figure>
+<p>如设置多个共享目录则可以按以下格式设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[share1]</span><br><span class="line">    ....</span><br><span class="line">[share2]</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 <p>详细配置项参考<a href="https://blog.csdn.net/qq_20327293/article/details/51596708" target="_blank" rel="noopener">https://blog.csdn.net/qq_20327293/article/details/51596708</a></p>
-<h3 id="添加samba账户"><a href="#添加samba账户" class="headerlink" title="添加samba账户"></a>添加samba账户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo touch /etc/samba/smbpasswd</span><br><span class="line">sudo smbpasswd -a USER_NAME</span><br></pre></td></tr></table></figure>
-<p>这是因为没有加相应的系统账号，所以会提示Failed to add entry for user的错误，只需增加相应的系统账号samba就可以了:<br>[root@ubuntu ~]# groupadd share -g 6000<br>[root@ubuntu ~]# useradd samba -u 6000 -g 6000 -s /sbin/nologin -d /dev/null</p>
-<p>这时就可以用smbpasswd -a samba增加samba这个samba账号了!为了增加系统的安全性，所以加的系统账号不要给shell它，也不给它指定目录，到时在/home目录给samba账号建个文件夹，该文件夹只有samba有读写权限即可!<br>如:<br>[root@ubuntu ~]# mkdir /home/samba<br>[root@ubuntu ~]# chown -R samba:share /home/samba</p>
-<p>若不想让另人访问，只让samba用户可以访问，只需执行命令:<br>[root@ubuntu ~]# chmod u+rwx,g+rwx,o-rwx /home/samba</p>
+<h3 id="添加-samba-账户"><a href="#添加-samba-账户" class="headerlink" title="添加 samba 账户"></a>添加 samba 账户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo touch /etc/samba/smbpasswd</span><br><span class="line">sudo smbpasswd -a USER_NAME</span><br></pre></td></tr></table></figure>
+<p>这是因为没有加相应的系统账号，所以会提示 Failed to add entry for user 的错误，只需增加相应的系统账号 samba 就可以了:<br>[root@ubuntu ~]# groupadd share -g 6000<br>[root@ubuntu ~]# useradd samba -u 6000 -g 6000 -s /sbin/nologin -d /dev/null</p>
+<p>这时就可以用 smbpasswd -a samba 增加 samba 这个 samba 账号了!为了增加系统的安全性，所以加的系统账号不要给 shell 它，也不给它指定目录，到时在/home 目录给 samba 账号建个文件夹，该文件夹只有 samba 有读写权限即可!<br>如:<br>[root@ubuntu ~]# mkdir /home/samba<br>[root@ubuntu ~]# chown -R samba:share /home/samba</p>
+<p>若不想让另人访问，只让 samba 用户可以访问，只需执行命令:<br>[root@ubuntu ~]# chmod u+rwx,g+rwx,o-rwx /home/samba</p>
 <h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/smb restart</span><br></pre></td></tr></table></figure>
-<h3 id="windows客户端连接到samba服务器"><a href="#windows客户端连接到samba服务器" class="headerlink" title="windows客户端连接到samba服务器"></a>windows客户端连接到samba服务器</h3><p>有两种方法：<br>1、网上邻居–&gt;查看工作组计算机–&gt;Samba Server<br>2、打开运行（windows键+R），输入配置samba服务器的主机名或者IP（格式： \192.168.1.98）</p>
-<h3 id="在Mac上连接"><a href="#在Mac上连接" class="headerlink" title="在Mac上连接"></a>在Mac上连接</h3><p>打开Finder（或在桌面），CMD + k，可以得到以下页面：</p>
-<p>.DS_Store安全隐患由于Finder自带的.DS_Store包含了太多信息，如果在服务器产生.DS_Store会造成安全隐患。如果没有特殊配置，你用Finder管理远程的文件夹会自动产生.DS_Store。在云端检查你的共享文件夹，如果发现.DS_Store，立即删除！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a /home/USER_NAME/shared_directory</span><br></pre></td></tr></table></figure></p>
-<p>如何让Finder不在远程连接时产生.DS_Store？打开Mac的Terminal，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.desktopservices DSDontWriteNetworkStores true</span><br></pre></td></tr></table></figure></p>
-<p>然后重启Mac，再试试远程连接。</p>
-<h3 id="在Linux上连接"><a href="#在Linux上连接" class="headerlink" title="在Linux上连接"></a>在Linux上连接</h3><p>挂载共享文件夹到Linux目录<br>我们也可以使用mount命令将samba共享目录挂载到Linux目录下面，命令格式如下面所示，username和password都是指<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mount -t cifs -o username=xxx,password=xxx //hostname/dir /mnt/tmp</span><br></pre></td></tr></table></figure></p>
-<p>另外可安装smbclient进行管理，有兴趣可自行谷歌</p>
-<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><p>PS：一些在阿里云ECS等服务商部署的服务需要在阿里云网站的服务器控制台编辑安全组规则，打开samba服务必须的端口，配置方式见图：<br><img src="搭建samba服务.resources/5F0F990A-969E-4B57-9F95-3B1A9729A173.png" alt="205d07c7929c7a4e3c984b2f8f9df75e"></p>
-<p>需要端口：139 和 445<br>在早期，SMB 运行于NBT 协议（NetBIOS over TCP/IP）上，使用UDP 协议的137、138 及TCP 协议的139 端口。<br>（137/139均为samba需要的服务端口，可以都放开）</p>
-<h3 id="再踩坑"><a href="#再踩坑" class="headerlink" title="再踩坑"></a>再踩坑</h3><p>在公司的pc上一直无法挂载，在家可以正常使用，搜索资料可能与网络的端口封锁有关<br><a href="https://blog.csdn.net/u011949148/article/details/54311288" target="_blank" rel="noopener">https://blog.csdn.net/u011949148/article/details/54311288</a></p>
+<h3 id="windows-客户端连接到-samba-服务器"><a href="#windows-客户端连接到-samba-服务器" class="headerlink" title="windows 客户端连接到 samba 服务器"></a>windows 客户端连接到 samba 服务器</h3><p>有两种方法：<br>1、网上邻居–&gt;查看工作组计算机–&gt;Samba Server<br>2、打开运行（windows 键+R），输入配置 samba 服务器的主机名或者 IP（格式： \192.168.1.98）</p>
+<h3 id="在-Mac-上连接"><a href="#在-Mac-上连接" class="headerlink" title="在 Mac 上连接"></a>在 Mac 上连接</h3><p>打开 Finder（或在桌面），CMD + k，可以得到以下页面：</p>
+<p>.DS_Store 安全隐患由于 Finder 自带的.DS_Store 包含了太多信息，如果在服务器产生.DS_Store 会造成安全隐患。如果没有特殊配置，你用 Finder 管理远程的文件夹会自动产生.DS_Store。在云端检查你的共享文件夹，如果发现.DS_Store，立即删除！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a /home/USER_NAME/shared_directory</span><br></pre></td></tr></table></figure>
+<p>如何让 Finder 不在远程连接时产生.DS_Store？打开 Mac 的 Terminal，输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.desktopservices DSDontWriteNetworkStores true</span><br></pre></td></tr></table></figure>
+<p>然后重启 Mac，再试试远程连接。</p>
+<h3 id="在-Linux-上连接"><a href="#在-Linux-上连接" class="headerlink" title="在 Linux 上连接"></a>在 Linux 上连接</h3><p>挂载共享文件夹到 Linux 目录<br>我们也可以使用 mount 命令将 samba 共享目录挂载到 Linux 目录下面，命令格式如下面所示，username 和 password 都是指</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mount -t cifs -o username=xxx,password=xxx //hostname/dir /mnt/tmp</span><br></pre></td></tr></table></figure>
+<p>另外可安装 smbclient 进行管理，有兴趣可自行谷歌</p>
+<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><p>PS：一些在阿里云 ECS 等服务商部署的服务需要在阿里云网站的服务器控制台编辑安全组规则，打开 samba 服务必须的端口，配置方式见图：<br><img src="/2019/07/17/搭建samba文件共享服务/5F0F990A-969E-4B57-9F95-3B1A9729A173.png" alt="205d07c7929c7a4e3c984b2f8f9df75e"></p>
+<p>需要端口：139 和 445<br>在早期，SMB 运行于 NBT 协议（NetBIOS over TCP/IP）上，使用 UDP 协议的 137、138 及 TCP 协议的 139 端口。<br>（137/139 均为 samba 需要的服务端口，可以都放开）</p>
+<h3 id="再踩坑"><a href="#再踩坑" class="headerlink" title="再踩坑"></a>再踩坑</h3><p>在公司的 pc 上一直无法挂载，在家可以正常使用，搜索资料可能与网络的端口封锁有关<br><a href="https://blog.csdn.net/u011949148/article/details/54311288" target="_blank" rel="noopener">https://blog.csdn.net/u011949148/article/details/54311288</a></p>
 
           
         
